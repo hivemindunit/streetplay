@@ -6,7 +6,7 @@ GIT
       sass (>= 3.2)
 
 GIT
-  remote: git@github.com:plataformatec/devise.git
+  remote: https://github.com/plataformatec/devise.git
   revision: 593ae41f9dac165a404b05cd3abd959245c64908
   specs:
     devise (4.1.0)
