@@ -31,6 +31,8 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'omniauth', '>= 1.0.0'
 gem 'devise', git: 'git@github.com:plataformatec/devise.git'
 gem 'geocoder'
+gem 'underscore-rails'
+gem 'gmaps4rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
