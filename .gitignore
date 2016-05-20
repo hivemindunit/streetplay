@@ -15,3 +15,32 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.idea/
+
+# Ignore application configuration
+/config/application.yml
+id_rsa
+id_rsa.pub
+# production.yml
+/config/secrets.yml
+/config/application.production.yml
+/config/secrets.production.yml
+/config/database.production.yml
+/config/settings.production.yml
+/config/sidekiq.production.yml
+/config/application.test.yml
+/config/secrets.test.yml
+/config/database.test.yml
+/config/settings.test.yml
+/config/application.staging.yml
+/config/secrets.staging.yml
+/config/database.staging.yml
+/config/settings.staging.yml
+/config/sidekiq.staging.yml
+/attachments/*
+dump.rdb
+/config/deploy/test/*
+/config/deploy/production/*
+/config/deploy/staging/*
+/.byebug_history
