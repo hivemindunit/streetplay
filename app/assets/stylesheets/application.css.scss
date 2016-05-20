@@ -39,5 +39,5 @@ body {
 
 html,body{height:100%;}
 .wrapper{min-height:100%; position:relative}
-.full{position:absolute; top:0; left:0; width:100%; height:80%; z-index: -1}
+.full{position:absolute; top:0; left:0; width:100%; height:80%; z-index: 1}
 .foo{position:absolute !important; bottom:0; left:0; width:100%; height:20%; z-index: 0}
