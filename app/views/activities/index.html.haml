@@ -3,6 +3,8 @@
     $('select.dropdown')
       .dropdown();
     $('#date-filter').datepicker();
+    $('.ui.sticky')
+      .sticky();
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: {id: 'map'} }, function(){
       if(navigator.geolocation)
@@ -31,6 +33,6 @@
           %label Дата
           %input{type: 'text', id: 'date-filter'}
   .twelve.wide.column
-    .ui.segment
-      %div{:style => "width: 800px;"}
-        #map{:style => "width: 800px; height: 400px;"}
+    -#.ui.embed
+    -#  %div{:style => "width: 840px;"}
+    -#    #map{:style => "width: 840px; height: 600px;"}

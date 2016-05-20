@@ -14,6 +14,8 @@
       %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
       %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
   %body
+    -#.wrapper
+    .full{id: "map"}
     .ui.fixed.menu
       %a.header.item{:href => root_path}
         = image_tag "logo.jpg", :class => "logo"
@@ -41,7 +43,7 @@
       %p.notice= notice
       %p.alert= alert
       = yield
-    .ui.inverted.vertical.footer.segment
+    .ui.fixed.foo.inverted.vertical.footer.segment
       .ui.center.aligned.container
         .ui.stackable.inverted.divided.grid
           .sixteen.wide.column
