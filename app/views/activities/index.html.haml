@@ -8,15 +8,14 @@
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: {id: 'map'} }, function(){
       if(navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(displayOnMap);
+        handler.map.centerOn(navigator.geolocation.getCurrentPosition(displayOnMap));
     });
 
     function displayOnMap(position){
-      var marker = handler.addMarker({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      });
-      handler.map.centerOn(marker);
+      // var marker = handler.addMarker({
+      //   lat: position.coords.latitude,
+      //   lng: position.coords.longitude
+      // });
     };
 .ui.grid
   .four.wide.column
@@ -32,6 +31,7 @@
         .field
           %label Дата
           %input{type: 'text', id: 'date-filter'}
+        %button.ui.button{type: "submit"} Применить фильтр
   .twelve.wide.column
     -#.ui.embed
     -#  %div{:style => "width: 840px;"}
