@@ -1,2 +1,15 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.erb
+.ui.grid
+  .four.wide.column
+    %h3.ui.top.attached.header Фильтр
+    .ui.attached.segment
+      .ui.form
+        .field
+          %label Вид спорта
+          %select.ui.dropdown{multiple: true}
+            - @activity_types.each do |t|
+              %option{value: t.id}
+                = t.to_s
+        %h5 Дата
+  .twelve.wide.column
+    .ui.segment
+      Карта

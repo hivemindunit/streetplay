@@ -4,10 +4,12 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0", :name => "viewport"}
-      %title Untitled
+      %title Streetplay - ищите новых друзей для занятий спортом или приглашайте своих!
       = csrf_meta_tags
       = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+      %script{:type => "text/javascript", :src => "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"}
+      %link{:rel => :stylesheet, :type => :"text/css", :href => "https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css"}
   %body
     .ui.fixed.menu
       %a.header.item{:href => root_path}
@@ -32,7 +34,7 @@
                 %a.item{:href => "#"} Link Item
                 %a.item{:href => "#"} Link Item
             %a.item{:href => "#"} Link Item
-    .ui.main.text.container
+    .ui.main.container
       %p.notice= notice
       %p.alert= alert
       = yield
@@ -40,9 +42,10 @@
       .ui.center.aligned.container
         .ui.stackable.inverted.divided.grid
           .sixteen.wide.column
-            &copy; 2016 Все права защищены
+            &copy; 2016 - Андрей Ермаков, Александр Цимбалистов - Все права защищены
         .ui.horizontal.inverted.small.divided.link.list
           %a.item{:href => "#"} Как это работает
           %a.item{:href => "#"} Контакты
           %a.item{:href => "#"} FAQ
           %a.item{:href => "#"} Условия использования
+    = yield :javascript
