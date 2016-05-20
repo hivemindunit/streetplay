@@ -7,15 +7,22 @@
       .sticky();
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: {id: 'map'} }, function(){
-      if(navigator.geolocation)
-        handler.map.centerOn(navigator.geolocation.getCurrentPosition(displayOnMap));
+      // if(navigator.geolocation)
+      //   handler.map.centerOn(navigator.geolocation.getCurrentPosition(displayOnMap));
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          handler.map.setCenter(initialLocation);
+        });
+      }
     });
 
     function displayOnMap(position){
-      // var marker = handler.addMarker({
-      //   lat: position.coords.latitude,
-      //   lng: position.coords.longitude
-      // });
+      var marker = handler.addMarker({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });
+      handler.map.centerOn(marker);
     };
 .ui.grid
   .four.wide.column
