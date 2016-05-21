@@ -18,7 +18,7 @@
     handler.buildMap({ internal: {id: 'map'} }, function(){
       var current_lat = getCookie('lat');
       var current_lng = getCookie('lng');
-      if (current_lat != 'undefined' && current_lng != 'undefined') {
+      if (typeof current_lat != 'undefined' && typeof current_lat !== 'NaN' && typeof current_lng !== 'undefined') {
           initialLocation = new google.maps.LatLng(current_lat, current_lng);
           handler.map.centerOn(initialLocation);
       }
