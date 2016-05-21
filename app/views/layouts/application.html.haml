@@ -10,11 +10,10 @@
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
       %script{:type => "text/javascript", :src => "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"}
       %link{:rel => :stylesheet, :type => :"text/css", :href => "https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css"}
-      %script{:src => "//maps.google.com/maps/api/js?v=3.23&sensor=false&client=&key=&libraries=geometry&language=&hl=®ion="}
+      %script{:src => "//maps.google.com/maps/api/js?v=3.23&sensor=false&client=&key=&libraries=geometry,places&language=&hl=®ion="}
       %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
       %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
   %body
-    -#.wrapper
     .full{id: "map"}
     .ui.fixed.menu
       %a.header.item{:href => root_path}
@@ -43,14 +42,14 @@
       %p.notice= notice
       %p.alert= alert
       = yield
-    .ui.fixed.foo.inverted.vertical.footer.segment
-      .ui.center.aligned.container
-        .ui.stackable.inverted.divided.grid
-          .sixteen.wide.column
-            &copy; 2016 - Андрей Ермаков, Александр Цимбалистов - Все права защищены
-        .ui.horizontal.inverted.small.divided.link.list
-          %a.item{:href => "#"} Как это работает
-          %a.item{:href => "#"} Контакты
-          %a.item{:href => "#"} FAQ
-          %a.item{:href => "#"} Условия использования
+    -#.ui.fixed.foo.inverted.vertical.footer.segment
+    -#  .ui.center.aligned.container
+    -#    .ui.stackable.inverted.divided.grid
+    -#      .sixteen.wide.column
+    -#        &copy; 2016 - Андрей Ермаков, Александр Цимбалистов - Все права защищены
+    -#    .ui.horizontal.inverted.small.divided.link.list
+    -#      %a.item{:href => "#"} Как это работает
+    -#      %a.item{:href => "#"} Контакты
+    -#      %a.item{:href => "#"} FAQ
+    -#      %a.item{:href => "#"} Условия использования
     = yield :javascript

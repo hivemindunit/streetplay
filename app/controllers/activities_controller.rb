@@ -16,6 +16,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    @activity_types = ActivityType.all
   end
 
   # GET /activities/1/edit
@@ -26,6 +27,7 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = Activity.new(activity_params)
+    @activity_types = ActivityType.all
 
     respond_to do |format|
       if @activity.save
@@ -70,6 +72,6 @@ class ActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.fetch(:activity, {})
+      params.fetch(:activity, {}).permit(:activity_type_id, :title, :address, :date_time, :duration_h, :duration_m, :description)
     end
 end
