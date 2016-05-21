@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'how_it_works/index'
+  get 'faq/index'
+
   devise_for :users
   root 'activities#index'
   get 'home/index'

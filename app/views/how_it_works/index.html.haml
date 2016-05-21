@@ -1,0 +1,8 @@
+- content_for :javascript do
+  :javascript
+    $('#map').hide();
+    //$('#vid').embed();
+.ui.container
+  .ui.embed
+    = video_tag 'video.mp4', :controls => true
+  -#.ui.embed{id: 'vid', 'data-url': '/images/video.mp4', 'data-icon': 'right circle arrow'}
