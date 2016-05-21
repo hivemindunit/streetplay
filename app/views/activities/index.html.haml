@@ -2,9 +2,11 @@
   :javascript
     $('select.dropdown')
       .dropdown();
-    $('#date-filter').datepicker({ dateFormat: 'dd.mm.yy' });
+    $('#type').dropdown('set selected', #{params[:activity_type_id] || '" "'});
+    $('#date-filter').val('#{params[:date_time]}').datepicker({ dateFormat: 'dd.mm.yy' });
     $('.ui.sticky')
       .sticky();
+
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: {id: 'map'} }, function(){
       if (navigator.geolocation) {
@@ -21,15 +23,12 @@
   .four.wide.column
     %h3.ui.top.attached.header Фильтр
     .ui.attached.segment{style: 'z-index: 10'}
-      .ui.form
+      = form_tag('/', method: 'get', class: 'ui form') do
         .field
-          %label Вид спорта
-          %select.ui.dropdown{multiple: true}
-            - @activity_types.each do |t|
-              %option{value: t.id}
-                = t.title
+          = label_tag :activity_type_id, 'Вид спорта'
+          = select_tag :activity_type_id, options_from_collection_for_select(@activity_types, :id, :title), {id: 'type', class: 'ui dropdown', multiple: true}
         .field
-          %label Дата
-          %input{type: 'text', id: 'date-filter'}
-        %button.ui.button{type: "submit"} Применить фильтр
+          = label_tag :date_time, 'Дата'
+          = text_field_tag :date_time, nil, {id: 'date-filter'}
+        = submit_tag 'Применить фильтр', {class: 'ui button'}
   .twelve.wide.column

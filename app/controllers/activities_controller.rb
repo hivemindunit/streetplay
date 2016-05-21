@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
+    @activities = Activity.filter(query_params)
     @activity_types = ActivityType.all
     @markers_hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
       marker.lat activity.latitude
@@ -80,5 +80,9 @@ class ActivitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
       params.fetch(:activity, {}).permit(:activity_type_id, :title, :address, :date_time, :duration_h, :duration_m, :description, :latitude, :longitude)
+    end
+
+    def query_params
+      params.permit(:date_time, activity_type_id: [])
     end
 end
