@@ -3,13 +3,26 @@
     $('select.dropdown')
       .dropdown();
     $('#type').dropdown('set selected', #{params[:activity_type_id] || '" "'});
-    $('#date-filter').val('#{params[:date_time]}').datepicker({ dateFormat: 'dd.mm.yy' });
+    $('#date-filter').val('#{params[:date_time]}').datetimepicker({
+      onShow: function(ct){
+        this.setOptions({
+          minDate: new Date()
+        });
+      },
+      format: "DD.MM.YYYY HH:mm",
+      timeFormat: "HH:mm:ss",
+    });
     $('.ui.sticky')
       .sticky();
-
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: {id: 'map'} }, function(){
-      if (navigator.geolocation) {
+      var current_lat = getCookie('lat');
+      var current_lng = getCookie('lng');
+      if (current_lat != 'undefined' && current_lng != 'undefined') {
+          initialLocation = new google.maps.LatLng(current_lat, current_lng);
+          handler.map.centerOn(initialLocation);
+      }
+      else if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
           initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
           handler.map.centerOn(initialLocation);
@@ -20,6 +33,13 @@
       handler.bounds.extendWith(markers);
       handler.getMap().setZoom(15);
     });
+    google.maps.event.addListener(handler.getMap(), 'center_changed', function() {
+      var c = handler.getMap().getCenter();
+      setCookie('lat', c.lat());
+      setCookie('lng', c.lng());
+    });
+  });
+
 .ui.grid
   .four.wide.column
     %h3.ui.top.attached.header Фильтр

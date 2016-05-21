@@ -8,8 +8,12 @@
       = csrf_meta_tags
       = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
       = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-      %script{:type => "text/javascript", :src => "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"}
-      %link{:rel => :stylesheet, :type => :"text/css", :href => "https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css"}
+      -#%link{:rel => :stylesheet, :type => :"text/css", :href => "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.1/jquery.datetimepicker.min.css"}
+      -#%script{:type => "text/javascript", :src => "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"}
+      -#%script{:type => "text/javascript", :src => "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.1/jquery.datetimepicker.min.js"}
+      %script{:type => "text/javascript", :src => "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"}
+
+      -#%link{:rel => :stylesheet, :type => :"text/css", :href => "https://code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css"}
       %script{:src => "//maps.google.com/maps/api/js?v=3.23&sensor=false&client=&key=&libraries=geometry,places&language=&hl=®ion="}
       %script{:src => "//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"}
       %script{:src => "//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", :type => "text/javascript"}
