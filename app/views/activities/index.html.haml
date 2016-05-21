@@ -13,8 +13,12 @@
           handler.map.centerOn(initialLocation);
         });
       }
+      var mh = #{raw @markers_hash.to_json};
+      markers = handler.addMarkers(mh);
+      handler.bounds.extendWith(markers);
+      //handler.fitMapToBounds();
     });
-    handler.getMap().setZoom(15);
+    //#handler.getMap().setZoom(15);
 .ui.grid
   .four.wide.column
     %h3.ui.top.attached.header Фильтр

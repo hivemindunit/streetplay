@@ -33,6 +33,9 @@
       address = document.getElementById('address').value;
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
+          console.log(results);
+          document.getElementById('latitude').value = results[0].geometry.location.lat()
+          document.getElementById('longitude').value = results[0].geometry.location.lng()
           map.centerOn(results[0].geometry.location);
           var marker = new google.maps.Marker({
               map: handler.getMap(),
@@ -80,6 +83,8 @@
       .field
         = f.label :description, 'Описание'
         = f.text_area :description
+      = f.hidden_field :latitude, { id: 'latitude'}
+      = f.hidden_field :longitude, { id: 'longitude'}
       .actions
         = f.submit 'Создать', class: 'ui submit button'
         = link_to 'Вернуться', root_path

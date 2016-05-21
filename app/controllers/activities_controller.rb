@@ -6,6 +6,12 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
     @activity_types = ActivityType.all
+    @markers_hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
+      marker.lat activity.latitude
+      marker.lng activity.longitude
+      marker.title activity.title
+      marker.infowindow '<strong>' + activity.title + '</strong>' + '<br/>' + activity.description + '<br/>' + '<a href=' + activity_url(activity) + '>Открыть детали</a>'
+    end
   end
 
   # GET /activities/1
@@ -27,11 +33,12 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = Activity.new(activity_params)
+    @activity.owner = User.create!(email: (0...8).map { ('a'..'z').to_a[rand(26)] }.join + '@aaa.bbb', password: '12345678')
     @activity_types = ActivityType.all
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+        format.html { redirect_to @activity, notice: 'Событие создано' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -72,6 +79,6 @@ class ActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.fetch(:activity, {}).permit(:activity_type_id, :title, :address, :date_time, :duration_h, :duration_m, :description)
+      params.fetch(:activity, {}).permit(:activity_type_id, :title, :address, :date_time, :duration_h, :duration_m, :description, :latitude, :longitude)
     end
 end
