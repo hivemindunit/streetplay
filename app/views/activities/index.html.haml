@@ -18,6 +18,7 @@
       var mh = #{raw @markers_hash.to_json};
       markers = handler.addMarkers(mh);
       handler.bounds.extendWith(markers);
+      handler.getMap().setZoom(15);
     });
 .ui.grid
   .four.wide.column
