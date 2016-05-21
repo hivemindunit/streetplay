@@ -9,8 +9,8 @@ class ActivitiesController < ApplicationController
     @markers_hash = Gmaps4rails.build_markers(@activities) do |activity, marker|
       marker.lat activity.latitude
       marker.lng activity.longitude
-      marker.title activity.title
-      marker.infowindow '<strong>' + activity.title + '</strong>' + '<br/>' + activity.description + '<br/>' + '<a href=' + activity_url(activity) + '>Открыть детали</a>'
+      marker.title activity.activity_type.title
+      marker.infowindow '<strong>' + activity.activity_type.title + ': ' + activity.title + '</strong>' + '<br/>' + activity.description + '<br/>' + '<a href=' + activity_url(activity) + '>Открыть детали</a>'
     end
   end
 

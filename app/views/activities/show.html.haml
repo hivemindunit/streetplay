@@ -1,4 +1,41 @@
-%p#notice= notice
-= link_to 'Edit', edit_activity_path(@activity)
-|
-= link_to 'Back', activities_path
+- content_for :javascript do
+  :javascript
+    $('select.dropdown')
+      .dropdown();
+    $('.ui.sticky')
+      .sticky();
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ internal: {id: 'map'} }, function(){
+      initialLocation = new google.maps.LatLng(#{@activity.latitude}, #{@activity.longitude});
+      handler.map.centerOn(initialLocation);
+      markers = handler.addMarkers([
+        {
+          "lat": #{@activity.latitude},
+          "lng": #{@activity.longitude}
+        }
+      ]);
+      handler.getMap().setZoom(15);
+    })
+.ui.grid
+  .six.wide.column
+    .ui.raised.segment{style: 'z-index: 10'}
+      %h2
+        = @activity.activity_type.title + ': ' + @activity.title
+      .ui.divider
+      %p
+        %strong Место начала:
+        = @activity.address
+      %p
+        %strong Начало:
+        = I18n.l(@activity.date_time) if @activity.date_time.present?
+      %p
+        %strong Продолжительность:
+        = @activity.duration_h.to_s + ' ч. ' + @activity.duration_m.to_s + ' мин. '
+      %p
+        %strong Описание:
+        = @activity.description
+  .seven.wide.column
+  .three.wide.column
+    .ui.raised.segment{style: 'z-index: 10'}
+      %h5 До начала
+      = distance_of_time_in_words_to_now(@activity.date_time, options = {}) if @activity.date_time.present?

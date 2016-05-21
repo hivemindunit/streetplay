@@ -2,7 +2,7 @@
   :javascript
     $('select.dropdown')
       .dropdown();
-    $('#date-filter').datepicker();
+    $('#date-filter').datepicker({ dateFormat: 'dd.mm.yy' });
     $('.ui.sticky')
       .sticky();
     var handler = Gmaps.build('Google');
@@ -16,9 +16,7 @@
       var mh = #{raw @markers_hash.to_json};
       markers = handler.addMarkers(mh);
       handler.bounds.extendWith(markers);
-      //handler.fitMapToBounds();
     });
-    //#handler.getMap().setZoom(15);
 .ui.grid
   .four.wide.column
     %h3.ui.top.attached.header Фильтр
@@ -35,6 +33,3 @@
           %input{type: 'text', id: 'date-filter'}
         %button.ui.button{type: "submit"} Применить фильтр
   .twelve.wide.column
-    -#.ui.embed
-    -#  %div{:style => "width: 840px;"}
-    -#    #map{:style => "width: 840px; height: 600px;"}

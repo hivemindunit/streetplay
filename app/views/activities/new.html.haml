@@ -3,7 +3,7 @@
     $('select.dropdown')
       .dropdown();
     $('#map').hide();
-    $('#date').datepicker();
+    $('#date').datepicker({ dateFormat: 'dd.mm.yy' });
     function geolocate() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
